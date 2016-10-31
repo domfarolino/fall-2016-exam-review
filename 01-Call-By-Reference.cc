@@ -1,10 +1,9 @@
-/** call-by-value
+/** call-by-reference
 
-    copies of values of actual parameters are passed
-    actual parameters are not affected by what happens in the function
-
-    the code within a function cannot alter the arguments used to call 
-    the function
+    address of (pointer to) the actual parameter is passed
+    every time the parameter variable (not address) is accessed
+    within the function the current value of the parameter is used
+    when reading and new value stored when writing.
 **/
 #include <iostream>
 using namespace std;
@@ -18,10 +17,16 @@ void secondPrintArray () {
 }
 
 void initAndPrintArray(int x, int y, int a, int b) {
-   for (int i=0 ; i < 9 ; i++) array[i] = i+1;
+   for (int i = 0 ; i < 9 ; i++) {
+     array[i] = i+1;
+   }
+
    array[9] = 0;
-   for (int i=0 ; i < 9 ; i++) 
-      if (i==x || i==y) cout << "* "; else cout << "  ";
+
+   for (int i = 0 ; i < 9 ; i++) {
+     if (i==x || i==y) cout << "* "; else cout << "  ";
+   }
+
    cout << "    swap(";
    if (a == 0) cout << "i, "; else cout << "array[i], ";
    if (b == 0) cout << "j, array)"; else cout << "array[j], array)";
@@ -30,13 +35,11 @@ void initAndPrintArray(int x, int y, int a, int b) {
    cout << "\n";
 }
 
-/* call by value */
+/* call by reference */
 void swap (int x, int y, int arr[]) {
-   int ar[10];
-   for (int k=0 ; k < 10 ; k++) ar[k] = arr[k]; /* array is copied */
-   int t = ar[x];
-   ar[x] = ar[y];
-   ar[y] = t;
+   int t = arr[x];
+   arr[x] = arr[y];
+   arr[y] = t;
 }
 
 int main() {

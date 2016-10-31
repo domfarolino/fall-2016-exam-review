@@ -1,8 +1,8 @@
-/** 
+/**
     type-unsafe-2.c
 
     Type safety:
-    No undesirable program behavior that is caused by a discrepancy 
+    No undesirable program behavior that is caused by a discrepancy
     between differing data types for constants, variables, and functions
     Types could be primitive or manufactured (structs, classes)
 **/
@@ -14,13 +14,20 @@ typedef struct { char arr[10]; } S2;
 
 int main() {
    int i;
-   /* reverse the order of the next two lines to reverse the order in 
+   /* reverse the order of the next two lines to reverse the order in
       which the data for these variables occurs on the stack */
+
    S2 b;
    S1 a;
+
    strncpy(a.arr,"Joe is my best friend and he is from Sandusky\0",36);
    strncpy(b.arr,"Pete\0",5);
+
+   printf("a.arr (before) = %s\n", a.arr);
    printf("b.arr (before) = %s\n", b.arr);
+
    memcpy(b.arr, a.arr, 36);
+
+   printf("a.arr (after)  = %s\n", a.arr);
    printf("b.arr (after)  = %s\n", b.arr);
 }

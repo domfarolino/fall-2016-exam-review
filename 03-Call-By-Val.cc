@@ -1,39 +1,56 @@
-/** call-by-reference
+/** call-by-value
 
-    address of (pointer to) the actual parameter is passed
-    every time the parameter variable (not address) is accessed 
-    within the function the current value of the parameter is used
-    when reading and new value stored when writing.
+    copies of values of actual parameters are passed
+    actual parameters are not affected by what happens in the function
+
+    the code within a function cannot alter the arguments used to call
+    the function
 **/
+
 #include <iostream>
 using namespace std;
 
 int i, j;
 int array[10];
 
-void secondPrintArray () {
-   for (int i=0 ; i < 10 ; i++) cout << array[i] << " ";
+void secondPrintArray() {
+   for (int i = 0 ; i < 10 ; i++) {
+     cout << array[i] << " ";
+   }
+
    cout << "\n";
 }
 
 void initAndPrintArray(int x, int y, int a, int b) {
-   for (int i=0 ; i < 9 ; i++) array[i] = i+1;
+   for (int i=0 ; i < 9 ; i++) {
+     array[i] = i+1;
+   }
+
    array[9] = 0;
-   for (int i=0 ; i < 9 ; i++) 
-      if (i==x || i==y) cout << "* "; else cout << "  ";
+
+   for (int i=0 ; i < 9 ; i++) {
+     if (i==x || i==y) cout << "* "; else cout << "  ";
+   }
+
    cout << "    swap(";
    if (a == 0) cout << "i, "; else cout << "array[i], ";
    if (b == 0) cout << "j, array)"; else cout << "array[j], array)";
    cout << "\n";
-   for (int i=0 ; i < 10 ; i++) cout << array[i] << " ";
+
+   for (int i = 0 ; i < 10 ; i++) {
+     cout << array[i] << " ";
+   }
+
    cout << "\n";
 }
 
-/* call by reference */
-void swap (int x, int y, int arr[]) {
-   int t = arr[x];
-   arr[x] = arr[y];
-   arr[y] = t;
+/* call by value */
+void swap(int x, int y, int arr[]) {
+   int ar[10];
+   for (int k=0 ; k < 10 ; k++) ar[k] = arr[k]; /* array is copied */
+   int t = ar[x];
+   ar[x] = ar[y];
+   ar[y] = t;
 }
 
 int main() {
@@ -41,8 +58,8 @@ int main() {
    j = 1;
    initAndPrintArray(i,j,1,1);
    swap(array[i], array[j], array);
-   secondPrintArray();
    cout << "-------------------\n";
+   secondPrintArray();
    i = 1;
    j = 5;
    initAndPrintArray(i,j,1,1);

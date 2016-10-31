@@ -1,4 +1,4 @@
-/** 
+/**
     mem-unsafe-2.cc
 
     Memory safety:
@@ -9,6 +9,7 @@
     3. All references respect permissions
 **/
 #include <iostream>
+
 using namespace std;
 
 class A {

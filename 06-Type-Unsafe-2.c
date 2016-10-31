@@ -17,10 +17,14 @@ int main (int argc, char **argv) {
    }
 
    port = atoi(argv[1]);
+
+   //328000
+
    if (port < PRIVILEGED_PORT) {
       printf("Users are not granted permission to use ports 0-1023\n");
       exit(0);
    }
+
    bin.port = port;
    printf("The OS gave you port %d\n", bin.port);
 }
