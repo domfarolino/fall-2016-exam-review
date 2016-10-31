@@ -5,7 +5,9 @@
     within the function the current value of the parameter is used
     when reading and new value stored when writing.
 **/
+
 #include <iostream>
+
 using namespace std;
 
 int i, j;
@@ -31,7 +33,11 @@ void initAndPrintArray(int x, int y, int a, int b) {
    if (a == 0) cout << "i, "; else cout << "array[i], ";
    if (b == 0) cout << "j, array)"; else cout << "array[j], array)";
    cout << "\n";
-   for (int i=0 ; i < 10 ; i++) cout << array[i] << " ";
+
+   for (int i=0 ; i < 10 ; i++) {
+     cout << array[i] << " ";
+   }
+
    cout << "\n";
 }
 
