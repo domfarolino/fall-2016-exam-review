@@ -2,6 +2,7 @@
 /* paraphrase of actual bug in the wild - SSHD casting vulnerability */
 #include <stdio.h>
 #include <stdlib.h>
+#include <climits>
 
 #define PRIVILEGED_PORT 1024
 
@@ -17,6 +18,10 @@ int main (int argc, char **argv) {
    }
 
    port = atoi(argv[1]);
+
+   printf("INT_MAX: %i", INT_MAX);
+
+   printf("Port: %d\n", port);
 
    //328000
 
